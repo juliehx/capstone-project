@@ -48,7 +48,7 @@ body {
 }
 
 ::placeholder {
-	color: #eee;
+	color: #999;
 }
 
 input:focus {
