@@ -1,13 +1,13 @@
 body {
 	background-color: #4A545E;
-	color: #eee;
+	color: white;
 	font-size: 14px;
 	font-family: consolas;
 	line-height: 25px;
 }
 
 .search-container {
-	width: 300px;
+	/*width: 300px;*/
 	padding: 40px;
 	background-color: #393D46;
 	border-radius: 10px;
@@ -18,6 +18,7 @@ body {
 
 .search-container {
 	margin-top: 50px;
+	width: 100%;
 }
 
 .search-container:hover {
@@ -25,13 +26,17 @@ body {
 	transition: all 0.3s ease;
 }
 
-.title {
+h1, h3 {
 	font-family: 'Raleway Dots', cursive;
 	letter-spacing: 5px;
 	font-size: 2em;
 	text-transform: uppercase;
 	border-bottom: 1px solid #eee;
 	padding-bottom: 10px;
+}
+
+h3 {
+	font-size: 1em;
 }
 
 .search-bar {
@@ -65,8 +70,94 @@ input:focus {
 	margin-bottom: -5px;
 }
 
+.results-container {
+	margin-top: 20px;
+}
+
+.artist-info {
+	background-color: #393D46;
+	width: 100%;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 3px 3px 3px #333;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.artist-info img {
+	width: 150px;
+	border-radius: 125px;
+	margin-top: 10px;
+}
+
+.album {
+	background-color: #393D46;
+	width: 100%;
+	height: 150px;
+	padding: 20px;
+	margin-top: 20px;
+	box-shadow: 3px 3px 3px #333;
+	transition: all 0.3s ease;
+	position: relative;
+}
+
+.album:hover {
+	box-shadow: 10px 10px 10px #333;
+	transition: all 0.3s ease;
+}
+
+.album img {
+	height: 100%;
+	float: left;
+	padding-right: 20px;
+}
+
+.show-tracks {
+	display: inline-block;
+	position: absolute;
+	height: 50px;
+	width: 0;
+	background-color: #262626;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+	transition: all 0.5s ease-out;
+}
+
+.show-tracks:hover {
+	background-color: #191919;
+	transition: all 0.5s ease;
+}
+
+.album:hover .show-tracks {
+	width: 50px;
+	padding: 5px;
+	transition: all 0.5s ease-out;
+}
+
+.credit {
+	background-color: #393D46;
+	width: 100%;
+	padding: 20px;
+	font-family: 'Raleway Dots', cursive;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 0.7em;
+	letter-spacing: 3px;
+	box-shadow: 3px 3px 3px #333;
+	margin-top: 20px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.credit img {
+	width: 15px;
+	margin-bottom: -3px;
+}
+
 @media only screen and (min-width: 640px) {
 	.search-container {
 		margin-top: 50%;
+		width: 300px;
 	}
 }
