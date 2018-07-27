@@ -26,17 +26,59 @@
 					<img src="images/sample-artist-img.png">
 					<h1>IU</h1>
 				</div>
-				<div class="album">
-					<img src="images/sample-album-cover.jpg">
-					<h3>Palette</h3>
-					<p>Single</p>
-					<div class="show-tracks"><img src="images/chevron-down.svg"></div>
-				</div>
+				<ul class="album-accordion">
+					<li>
+						<div class="album">
+							<img src="images/sample-album-cover.jpg" class="album-cover">
+							<h3>Palette</h3>
+							<p>Single</p>
+							<div class="show-tracks"><img src="images/chevron-down.svg"></div>
+						</div>
+						<div class="tracklist">
+							<div class="track">
+								<p>1 - Doki Doki Disco</p>
+								<audio controls>
+									<source src="audio/doki-doki-disco.mp3" type="audio/mpeg">
+								</audio>
+							</div>
+							<div class="track">
+								<p>2 - Doki Doki Disco</p>
+								<audio controls>
+									<source src="audio/doki-doki-disco.mp3" type="audio/mpeg">
+								</audio>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="album">
+							<img src="images/sample-album-cover.jpg" class="album-cover">
+							<h3>Palette</h3>
+							<p>Single</p>
+							<div class="show-tracks"><img src="images/chevron-down.svg"></div>
+						</div>
+						<div class="tracklist">
+							<div class="track">
+								<p>1 - Doki Doki Disco</p>
+								<audio controls>
+									<source src="audio/doki-doki-disco.mp3" type="audio/mpeg">
+								</audio>
+							</div>
+							<div class="track">
+								<p>2 - Doki Doki Disco</p>
+								<audio controls>
+									<source src="audio/doki-doki-disco.mp3" type="audio/mpeg">
+								</audio>
+							</div>
+						</div>
+					</li>
+				</ul>
 				<div class="credit">
 					<p><img src="images/code.svg"> by Julie</p>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	<script src="app.js"></script>
 </body>
 </html>

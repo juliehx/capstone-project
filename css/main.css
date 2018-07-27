@@ -96,17 +96,12 @@ input:focus {
 	padding: 20px;
 	margin-top: 20px;
 	box-shadow: 3px 3px 3px #333;
-	transition: all 0.3s ease;
+	overflow: hidden;
 	position: relative;
 }
 
-.album:hover {
-	box-shadow: 10px 10px 10px #333;
-	transition: all 0.3s ease;
-}
-
-.album img {
-	height: 100%;
+.album-cover {
+	height: 110px;
 	float: left;
 	padding-right: 20px;
 }
@@ -123,6 +118,10 @@ input:focus {
 	transition: all 0.5s ease-out;
 }
 
+.show-tracks img {
+	height: 100%;
+}
+
 .show-tracks:hover {
 	background-color: #191919;
 	transition: all 0.5s ease;
@@ -132,6 +131,33 @@ input:focus {
 	width: 50px;
 	padding: 5px;
 	transition: all 0.5s ease-out;
+}
+
+.tracklist {
+	width: 100%;
+	display: none;
+	box-shadow: 3px 3px 3px #333;
+	background-color: #393D46;
+}
+
+.track {
+	width: 100%;
+	padding: 15px;
+	text-align: center;
+}
+
+audio {
+	width: 100%;
+}
+
+ul, li {
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+.track:nth-child(odd) {
+	background: #333;
 }
 
 .credit {
