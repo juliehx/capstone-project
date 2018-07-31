@@ -1,4 +1,4 @@
-const searchEndpoint = 'https://api.spotify.com/v1';
+const searchEndpoint = 'https://api.spotify.com/v1/search';
 var queryData = {};
 var authToken = '';
 
@@ -22,7 +22,7 @@ function searchArtist(token, searchTerm, callback) {
 	const settings = {
 		url: searchEndpoint,
 		headers: {
-			'Authorization': 'Bearer ' + authToken
+			'Authorization': 'Bearer ' + token
 		},
 		data: {
 			q: searchTerm,
@@ -49,10 +49,10 @@ function handleSearch() {
 	})
 }
 
+authToken = getQueries(queryData)['access_token'];
+
 $('.album-accordion').on('click', '.album', function(event) {
 	$(this).next('.tracklist').slideToggle();
 });
-
-authToken = getQueries(queryData)['access_token'];
 
 $(handleSearch);
