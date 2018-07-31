@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Songbird</title>
+	<meta name="description" content="Search and preview your favorite artists' album tracks.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/float-grid.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway+Dots" rel="stylesheet">
+</head>
+<body>
+	<div class="row">
+		<div class="col-6">
+			<div class="search-container">
+				<h1 class>Songbird</h1>
+				<p>Search and preview your favorite artists' albums.</p>
+				<form class="artist-search">
+					<input type="text" name="search-bar" class="search-bar" placeholder="Search">
+					<button type="submit" class="submit-button"><img src="images/search.svg"></button>
+				</form>
+			</div>
+		</div>
+		<div class="col-6">
+			<div class="results-container">
+				<div class="artist-info">
+					<img src="images/sample-artist-img.png">
+					<h1>IU</h1>
+				</div>
+				<ul class="album-accordion">
+					<li>
+						<div class="album">
+							<img src="images/sample-album-cover.jpg" class="album-cover">
+							<h3>Palette</h3>
+							<p>Single</p>
+							<div class="show-tracks"><img src="images/chevron-down.svg"></div>
+						</div>
+						<div class="tracklist">
+							<div class="track">
+								<p>1 - Doki Doki Disco</p>
+								<audio controls>
+									<source src="" type="audio/mpeg">
+								</audio>
+							</div>
+							<div class="track">
+								<p>2 - Doki Doki Disco</p>
+								<audio controls>
+									<source src="" type="audio/mpeg">
+								</audio>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="album">
+							<img src="images/sample-album-cover.jpg" class="album-cover">
+							<h3>Palette</h3>
+							<p>Single</p>
+							<div class="show-tracks"><img src="images/chevron-down.svg"></div>
+						</div>
+						<div class="tracklist">
+							<div class="track">
+								<p>1 - Doki Doki Disco</p>
+								<audio controls>
+									<source src="" type="audio/mpeg">
+								</audio>
+							</div>
+							<div class="track">
+								<p>2 - Doki Doki Disco</p>
+								<audio controls>
+									<source src="" type="audio/mpeg">
+								</audio>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="credit">
+					<p><img src="images/code.svg"> by Julie</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+</body>
+</html>
