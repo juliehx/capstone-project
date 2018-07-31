@@ -53,6 +53,6 @@ $('.album-accordion').on('click', '.album', function(event) {
 	$(this).next('.tracklist').slideToggle();
 });
 
-authToken = getQueries(queryObj)['access_token'];
+authToken = getQueries(queryData)['access_token'];
 
 $(handleSearch);
