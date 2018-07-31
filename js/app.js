@@ -1,5 +1,6 @@
 const searchEndpoint = 'https://api.spotify.com/v1';
 var queryData = {};
+var authToken = '';
 
 function getQueries(queryObj) {
 	var queries = window.location.hash.substring(1).split('&');
@@ -10,18 +11,18 @@ function getQueries(queryObj) {
 	return queryObj;
 }
 
-function checkAuth(queryObj) {
-	if('error' in queryObj) {
+function checkAuth(token) {
+	if(!token) {
 		window.location.replace('https://juliehx.github.io/songbird');
 	}
 }
 
-function searchArtist(queryObj, searchTerm, callback) {
-	checkAuth(queryObj);
+function searchArtist(token, searchTerm, callback) {
+	checkAuth(token);
 	const settings = {
 		url: searchEndpoint,
 		headers: {
-			'Authorization': 'Bearer ' + queryObj['access_token']
+			'Authorization': 'Bearer ' + authToken
 		},
 		data: {
 			q: searchTerm,
@@ -30,14 +31,26 @@ function searchArtist(queryObj, searchTerm, callback) {
 		},
 		type: 'GET',
 		dataType: 'json',
-		success: function(result) {console.log(result);}
+		success: callback
 	};
 	$.ajax(settings);
 
+}
+
+function getArtist(data) {
+	console.log(data);
+}
+
+function handleSearch() {
+	$('.artist-search').submit(function(event) {
+		event.preventDefault();
+		var query = $(this).find('search-bar').val();
+		searchArtist(token, query, getArtist);
+	})
 }
 
 $('.album-accordion').on('click', '.album', function(event) {
 	$(this).next('.tracklist').slideToggle();
 });
 
-$(console.log(getQueries(queryData)));
+$(handleSearch);
