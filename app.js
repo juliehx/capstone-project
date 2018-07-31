@@ -6,4 +6,4 @@ $('.album-accordion').on('click', '.album', function(event) {
 	$(this).next('.tracklist').slideToggle();
 });
 
-window.location.replace(`${authEndpoint}?client_id=${clientID}&redirect_uri=${redirectURI}&response_type=token`);
+window.location = `${authEndpoint}?client_id=${clientID}&redirect_uri=${redirectURI}&response_type=token`;
