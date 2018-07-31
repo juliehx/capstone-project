@@ -1,6 +1,6 @@
 const authEndpoint = 'https://accounts.spotify.com/api/token';
 const clientID = 'c180770a2f4144078103e268866ea767';
-const redirectURI = 'http://localhost:8888';
+const redirectURI = 'http://localhost:8888/callback';
 
 function requestAuth(clientID) {
 	const settings = {
@@ -12,7 +12,8 @@ function requestAuth(clientID) {
 		},
 		type: 'POST',
 		dataType: 'json',
-		success: alert("success")
+		success: alert("success"),
+		failure: alert("failure")
 	}
 	$.ajax(settings);
 }
