@@ -45,7 +45,7 @@ function handleSearch() {
 	$('.artist-search').submit(function(event) {
 		event.preventDefault();
 		var query = $(this).find('search-bar').val();
-		searchArtist(token, query, getArtist);
+		searchArtist(authToken, query, getArtist);
 	})
 }
 
