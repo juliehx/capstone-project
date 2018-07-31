@@ -1,6 +1,6 @@
 const authEndpoint = 'https://accounts.spotify.com/authorize';
 const clientID = 'c180770a2f4144078103e268866ea767';
-const redirectURI = 'https://juliehx.github.io/songbird/';
+const redirectURI = 'https://juliehx.github.io/songbird/callback';
 
 $('.album-accordion').on('click', '.album', function(event) {
 	$(this).next('.tracklist').slideToggle();
