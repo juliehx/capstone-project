@@ -11,6 +11,8 @@ function getQueries(queryObj) {
 	return queryObj;
 }
 
+authToken = getQueries(queryData)['access_token'];
+
 function checkAuth(token) {
 	if(!token) {
 		window.location.replace('https://juliehx.github.io/songbird');
@@ -45,11 +47,10 @@ function handleSearch() {
 	$('.artist-search').submit(function(event) {
 		event.preventDefault();
 		var query = $(this).find('search-bar').val();
+		console.log(query);
 		searchArtist(authToken, query, getArtist);
-	})
+	});
 }
-
-authToken = getQueries(queryData)['access_token'];
 
 $('.album-accordion').on('click', '.album', function(event) {
 	$(this).next('.tracklist').slideToggle();
