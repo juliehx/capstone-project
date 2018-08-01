@@ -1,4 +1,5 @@
 const searchEndpoint = 'https://api.spotify.com/v1/search';
+const getEndpoint = 'https://api.spotify.com/v1'
 var queryData = {};
 var authToken = '';
 
@@ -38,8 +39,11 @@ function searchArtist(token, searchTerm, callback) {
 	$.ajax(settings);
 }
 
-function getArtist(results) {
-	console.log(results);
+function getArtist(results, token, callback) {
+	checkAuth(token);
+	const settings = {
+		url:
+	}
 }
 
 function handleSearch() {
