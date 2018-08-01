@@ -67,9 +67,23 @@ function getAlbum(token, artistID) {
 		type: 'GET',
 		dataType: 'json',
 		success: function(response) {
-			console.log(response);
+			//console.log(response);
 			displayAlbum(response);
 		}
+	};
+	$.ajax(settings);
+}
+
+function getAlbumTracks(token, albumID, callback) {
+	checkAuth(token);
+	const settings = {
+		url: getEndpoint + '/albums/' + albumID + '/tracks',
+		headers: {
+			'Authorization': 'Bearer ' + token
+		},
+		type: 'GET',
+		dataType: 'json',
+		success: callback
 	};
 	$.ajax(settings);
 }
@@ -82,8 +96,13 @@ function displayAlbum(results) {
 	var albums = '';
 	for(var i = 0; i < results.items.length; ++i) {
 		albums += renderAlbum(results.items[i]);
+		getAlbumTracks(authToken, results.items[i].id, displayAlbumTracks);
 	}
 	$('.album-accordion').html(albums);
+}
+
+function displayAlbumTracks(results) {
+	console.log(results);
 }
 
 function renderAlbum(album) {
