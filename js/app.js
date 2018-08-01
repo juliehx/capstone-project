@@ -37,6 +37,7 @@ function searchArtist(token, searchTerm) {
 		success: function(response) {
 			var artistID = response.artists.items[0].id;
 			getArtist(token, artistID, displayArtist);
+			getAlbum(token, artistID);
 		}
 	};
 	$.ajax(settings);
@@ -56,10 +57,20 @@ function getArtist(token, artistID, callback) {
 	$.ajax(settings);
 }
 
-/*function updateArtist(results) {
-	state.artistID = results.artists.items[0].id;
-	return state;
-}*/
+function getAlbum(token, artistID) {
+	checkAuth(token);
+	const settings = {
+		url: getEndpoint + '/artists/' + artistID + '/albums',
+		headers: {
+			'Authorization': 'Bearer ' + token
+		},
+		type: 'GET',
+		dataType: 'json',
+		success: function(response) {
+			console.log(response);
+		}
+	}
+}
 
 function displayArtist(results) {
 	$('.artist-info').html(`<img src="${results.images[0].url}"><h1>${results.name}</h1>`);
