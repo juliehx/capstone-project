@@ -96,7 +96,6 @@ function displayAlbum(results) {
 	var albums = '';
 	for(var i = 0; i < results.items.length; ++i) {
 		albums += renderAlbum(results.items[i]);
-		getAlbumTracks(authToken, results.items[i].id, displayAlbumTracks);
 	}
 	$('.album-accordion').html(albums);
 }
