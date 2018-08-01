@@ -68,12 +68,34 @@ function getAlbum(token, artistID) {
 		dataType: 'json',
 		success: function(response) {
 			console.log(response);
-		}
+			displayAlbum(response);
+		};
+		$.ajax(settings);
 	}
 }
 
 function displayArtist(results) {
 	$('.artist-info').html(`<img src="${results.images[0].url}"><h1>${results.name}</h1>`);
+}
+
+function displayAlbum(results) {
+	var albums = '';
+	for(var i = 0; i < results.items.length; ++i) {
+		albums += renderAlbum(results.items[i]);
+	}
+	$('.album-accordion').html(albums);
+}
+
+function renderAlbum(album) {
+	var albumInfo =`<li>
+					<div class="album">
+					<img src="${album.images[0].url}" class="album-cover">
+					<h3>${album.name}</h3>
+					<p>${album.type}</p>
+					<div class="show-tracks"><img src="images/chevron-down.svg"></div>
+					</div>
+					</li>`;
+	return albumInfo;
 }
 
 function handleSearch() {
