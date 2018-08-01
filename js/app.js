@@ -56,6 +56,7 @@ function getArtist(state, callback) {
 
 function updateArtist(results) {
 	state.artistID = results.artists.items[0].id;
+	return state;
 }
 
 function renderArtist(results) {
