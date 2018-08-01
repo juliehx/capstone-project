@@ -34,7 +34,9 @@ function searchArtist(token, searchTerm) {
 		},
 		type: 'GET',
 		dataType: 'json',
-		success: getArtist(results, token, renderArtist)
+		success: function(results) {
+			getArtist(results, token, renderArtist);
+		}
 	};
 	$.ajax(settings);
 }
