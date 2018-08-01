@@ -36,7 +36,7 @@ function searchArtist(token, searchTerm) {
 		dataType: 'json',
 		success: function(response) {
 			var artistID = response.artists.items[0].id;
-			getArtist(token, artistID, renderArtist);
+			getArtist(token, artistID, displayArtist);
 		}
 	};
 	$.ajax(settings);
@@ -61,8 +61,8 @@ function getArtist(token, artistID, callback) {
 	return state;
 }*/
 
-function renderArtist(results) {
-	console.log(results);
+function displayArtist(results) {
+	$('.artist-info').html(`<img src="${results.images[0].url}"><h1>${results.name}</h1>`);
 }
 
 function handleSearch() {
