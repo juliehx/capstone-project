@@ -68,14 +68,17 @@ function getAlbum(token, artistID) {
 		dataType: 'json',
 		success: function(response) {
 			//console.log(response);
-			displayAlbum(response);
+			//var albumIDList = response.items;
+
+			displayAlbum(token, response);
 		}
 	};
 	$.ajax(settings);
 }
 
-function getAlbumTracks(token, albumID, callback) {
+function getAlbumTracks(token, albumID) {
 	checkAuth(token);
+	var albumTracks;
 	const settings = {
 		url: getEndpoint + '/albums/' + albumID + '/tracks',
 		headers: {
@@ -83,20 +86,23 @@ function getAlbumTracks(token, albumID, callback) {
 		},
 		type: 'GET',
 		dataType: 'json',
-		success: callback
+		success: function(response) {
+			albumTracks = response.items;
+		}
 	};
 	$.ajax(settings);
+	return albumTracks;
 }
 
 function displayArtist(results) {
 	$('.artist-info').html(`<img src="${results.images[0].url}"><h1>${results.name}</h1>`);
 }
 
-function displayAlbum(results) {
+function displayAlbum(token, results) {
 	var albums = '';
 	for(var i = 0; i < results.items.length; ++i) {
-		albums += renderAlbum(results.items[i]);
-		getAlbumTracks(authToken, results.items[i].id, displayAlbumTracks);
+		albums += renderAlbum(results.items[i], getAlbumTracks(token, results.items[i].id));
+		//getAlbumTracks(authToken, results.items[i].id, displayAlbumTracks);
 	}
 	$('.album-accordion').html(albums);
 }
@@ -105,16 +111,28 @@ function displayAlbumTracks(results) {
 	console.log(results);
 }
 
-function renderAlbum(album) {
+function renderAlbum(album, tracks) {
 	var albumInfo =`<li>
 					<div class="album">
-					<img src="${album.images[0].url}" class="album-cover">
-					<h3>${album.name}</h3>
-					<p>${album.type}</p>
-					<div class="show-tracks"><img src="images/chevron-down.svg"></div>
+						<img src="${album.images[0].url}" class="album-cover">
+						<h3>${album.name}</h3>
+						<p>${album.type}</p>
+						<div class="show-tracks"><img src="images/chevron-down.svg"></div>
 					</div>
-					</li>`;
-	return albumInfo;
+					<div class="tracklist">`;
+	for(var i = 0; i < tracks.items.length; ++i) {
+		albumInfo += renderTrack(tracks.items[i]);
+	}
+	return albumInfo + '</div>';
+}
+
+function renderTrack(track) {
+	return `<div class='track'>
+				<p>${track.track_number} - ${track.name}</p>
+				<audio controls>
+					<source src="${track.preview_url}">
+				</audio>
+			</div>`;
 }
 
 function handleSearch() {
