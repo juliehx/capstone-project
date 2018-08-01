@@ -69,9 +69,9 @@ function getAlbum(token, artistID) {
 		success: function(response) {
 			console.log(response);
 			displayAlbum(response);
-		};
-		$.ajax(settings);
-	}
+		}
+	};
+	$.ajax(settings);
 }
 
 function displayArtist(results) {
