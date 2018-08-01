@@ -36,18 +36,16 @@ function searchArtist(token, searchTerm, callback) {
 		success: callback
 	};
 	$.ajax(settings);
-
 }
 
-function getArtist(data) {
-	console.log(data);
+function getArtist(results) {
+	console.log(results);
 }
 
 function handleSearch() {
 	$('.artist-search').submit(function(event) {
 		event.preventDefault();
-		var query = $(this).find('search-bar').val();
-		console.log(query);
+		var query = $(this).find('.search-bar').val();
 		searchArtist(authToken, query, getArtist);
 	});
 }
