@@ -1,8 +1,7 @@
 const searchEndpoint = 'https://api.spotify.com/v1/search';
 const getEndpoint = 'https://api.spotify.com/v1'
 var queryData = {};
-
-var state = {};
+var authToken = '';
 
 function getQueries(queryObj) {
 	var queries = window.location.hash.substring(1).split('&');
@@ -13,7 +12,7 @@ function getQueries(queryObj) {
 	return queryObj;
 }
 
-state.authToken = getQueries(queryData)['access_token'];
+authToken = getQueries(queryData)['access_token'];
 
 function checkAuth(token) {
 	if(!token) {
@@ -21,12 +20,12 @@ function checkAuth(token) {
 	}
 }
 
-function searchArtist(state, searchTerm, callback) {
-	checkAuth(state.authToken);
+function searchArtist(token, searchTerm) {
+	checkAuth(token);
 	const settings = {
 		url: searchEndpoint,
 		headers: {
-			'Authorization': 'Bearer ' + state.authToken
+			'Authorization': 'Bearer ' + token
 		},
 		data: {
 			q: searchTerm,
@@ -35,17 +34,20 @@ function searchArtist(state, searchTerm, callback) {
 		},
 		type: 'GET',
 		dataType: 'json',
-		success: callback
+		success: function(response) {
+			var artistID = response.artists.items[0].id;
+			getArtist(token, artistID, renderArtist);
+		}
 	};
 	$.ajax(settings);
 }
 
-function getArtist(state, callback) {
-	checkAuth(state.authToken);
+function getArtist(token, artistID, callback) {
+	checkAuth(token);
 	const settings = {
-		url: getEndpoint + '/artists/' + state.artistID,
+		url: getEndpoint + '/artists/' + artistID,
 		headers: {
-			'Authorization': 'Bearer ' + state.authToken
+			'Authorization': 'Bearer ' + token
 		},
 		type: 'GET',
 		dataType: 'json',
@@ -54,10 +56,10 @@ function getArtist(state, callback) {
 	$.ajax(settings);
 }
 
-function updateArtist(results) {
+/*function updateArtist(results) {
 	state.artistID = results.artists.items[0].id;
 	return state;
-}
+}*/
 
 function renderArtist(results) {
 	console.log(results);
@@ -67,8 +69,8 @@ function handleSearch() {
 	$('.artist-search').submit(function(event) {
 		event.preventDefault();
 		var query = $(this).find('.search-bar').val();
-		searchArtist(state, query, updateArtist);
-		getArtist(state, renderArtist);
+		searchArtist(authToken, query);
+		//getArtist(state, renderArtist);
 	});
 }
 
