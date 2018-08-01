@@ -1,7 +1,8 @@
 const searchEndpoint = 'https://api.spotify.com/v1/search';
 const getEndpoint = 'https://api.spotify.com/v1'
 var queryData = {};
-var authToken = '';
+
+var state = {};
 
 function getQueries(queryObj) {
 	var queries = window.location.hash.substring(1).split('&');
@@ -12,7 +13,7 @@ function getQueries(queryObj) {
 	return queryObj;
 }
 
-authToken = getQueries(queryData)['access_token'];
+state.authToken = getQueries(queryData)['access_token'];
 
 function checkAuth(token) {
 	if(!token) {
@@ -20,12 +21,12 @@ function checkAuth(token) {
 	}
 }
 
-function searchArtist(token, searchTerm) {
-	checkAuth(token);
+function searchArtist(state, searchTerm, callback) {
+	checkAuth(state.authToken);
 	const settings = {
 		url: searchEndpoint,
 		headers: {
-			'Authorization': 'Bearer ' + token
+			'Authorization': 'Bearer ' + state.authToken
 		},
 		data: {
 			q: searchTerm,
@@ -34,27 +35,29 @@ function searchArtist(token, searchTerm) {
 		},
 		type: 'GET',
 		dataType: 'json',
-		success: function(results) {
-			getArtist(results, token, renderArtist);
-		}
+		success: callback
 	};
 	$.ajax(settings);
 }
 
-function getArtist(results, token, callback) {
-	checkAuth(token);
+function getArtist(state, callback) {
+	checkAuth(state.authToken);
 	const settings = {
 		url: getEndpoint,
 		headers: {
-			'Authorization': 'Bearer ' + token
+			'Authorization': 'Bearer ' + state.authToken
 		},
 		data: {
-			id: results.artists.items[0].id
+			id: state.artistID
 		},
 		type: 'GET',
 		dataType: 'json',
 		success: callback
 	};
+}
+
+function updateArtist(results) {
+	state.artistID = results.artists.items[0].id;
 }
 
 function renderArtist(results) {
@@ -65,7 +68,8 @@ function handleSearch() {
 	$('.artist-search').submit(function(event) {
 		event.preventDefault();
 		var query = $(this).find('.search-bar').val();
-		searchArtist(authToken, query);
+		searchArtist(state, query, updateArtist);
+		getArtist(state, renderArtist);
 	});
 }
 
