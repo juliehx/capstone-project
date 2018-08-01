@@ -43,17 +43,15 @@ function searchArtist(state, searchTerm, callback) {
 function getArtist(state, callback) {
 	checkAuth(state.authToken);
 	const settings = {
-		url: getEndpoint,
+		url: getEndpoint + '/artists/' + state.artistID,
 		headers: {
 			'Authorization': 'Bearer ' + state.authToken
-		},
-		data: {
-			id: state.artistID
 		},
 		type: 'GET',
 		dataType: 'json',
 		success: callback
 	};
+	$.ajax(settings);
 }
 
 function updateArtist(results) {
