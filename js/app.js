@@ -20,7 +20,7 @@ function checkAuth(token) {
 	}
 }
 
-function searchArtist(token, searchTerm, callback) {
+function searchArtist(token, searchTerm) {
 	checkAuth(token);
 	const settings = {
 		url: searchEndpoint,
@@ -34,7 +34,7 @@ function searchArtist(token, searchTerm, callback) {
 		},
 		type: 'GET',
 		dataType: 'json',
-		success: callback
+		success: getArtist(results, token, renderArtist)
 	};
 	$.ajax(settings);
 }
@@ -42,15 +42,28 @@ function searchArtist(token, searchTerm, callback) {
 function getArtist(results, token, callback) {
 	checkAuth(token);
 	const settings = {
-		url:
-	}
+		url: getEndpoint,
+		headers: {
+			'Authorization': 'Bearer ' + token
+		},
+		data: {
+			id: results.artists.items[0].id
+		},
+		type: 'GET',
+		dataType: 'json',
+		success: callback
+	};
+}
+
+function renderArtist(results) {
+	console.log(results);
 }
 
 function handleSearch() {
 	$('.artist-search').submit(function(event) {
 		event.preventDefault();
 		var query = $(this).find('.search-bar').val();
-		searchArtist(authToken, query, getArtist);
+		searchArtist(authToken, query);
 	});
 }
 
