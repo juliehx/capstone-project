@@ -64,6 +64,9 @@ function getAlbum(token, artistID) {
 		headers: {
 			'Authorization': 'Bearer ' + token
 		},
+		data: {
+			include_groups: 'albums'
+		},
 		type: 'GET',
 		dataType: 'json',
 		success: function(response) {
