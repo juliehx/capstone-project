@@ -65,7 +65,7 @@ function getAlbum(token, artistID) {
 			'Authorization': 'Bearer ' + token
 		},
 		data: {
-			include_groups: 'albums'
+			include_groups: 'album'
 		},
 		type: 'GET',
 		dataType: 'json',
@@ -119,7 +119,6 @@ function renderAlbum(album) {
 						<div class="album" id="${album.id}">
 							<img src="${album.images[0].url}" class="album-cover">
 							<h3>${album.name}</h3>
-							<p>${album.type}</p>
 						</div>
 					</li>`;
 	return albumInfo;
