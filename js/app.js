@@ -74,7 +74,7 @@ function getAlbum(token, artistID) {
 	$.ajax(settings);
 }
 
-function getAlbumTracks(token, albumID, element) {
+/*function getAlbumTracks(token, albumID, element) {
 	checkAuth(token);
 	const settings = {
 		url: getEndpoint + '/albums/' + albumID + '/tracks',
@@ -88,7 +88,7 @@ function getAlbumTracks(token, albumID, element) {
 		}
 	};
 	$.ajax(settings);
-}
+}*/
 
 function displayArtist(results) {
 	$('.artist-info').html(`<img src="${results.images[0].url}"><h1>${results.name}</h1>`);
@@ -102,14 +102,14 @@ function displayAlbum(results) {
 	$('.album-accordion').html(albums);
 }
 
-function displayAlbumTracks(results) {
+/*function displayAlbumTracks(results) {
 	var tracks = '<div class="tracklist">';
 	for(var i = 0; i < results.items.length; ++i) {
 		tracks += renderTracks(results.items[i]);
 	}
 	tracks += "</div>";
 	element.after(tracks);
-}
+}*/
 
 function renderAlbum(album) {
 	var albumInfo =`<li>
@@ -117,20 +117,19 @@ function renderAlbum(album) {
 							<img src="${album.images[0].url}" class="album-cover">
 							<h3>${album.name}</h3>
 							<p>${album.type}</p>
-							<div class="show-tracks"><img src="images/chevron-down.svg"></div>
 						</div>
 					</li>`;
 	return albumInfo;
 }
 
-function renderTracks(track) {
+/*function renderTracks(track) {
 	return `<div class="track">
 				<p>${track.track_number} - ${track.name}</p>
 				<audio controls>
 					<source src="${track.preview_url}">
 				</audio>
 			</div>`;
-}
+}*/
 
 function handleSearch() {
 	$('.artist-search').submit(function(event) {
@@ -142,7 +141,7 @@ function handleSearch() {
 }
 
 $('.album-accordion').on('click', '.album', function(event) {
-	getAlbumTracks(authToken, $(this).attr('id'), $(this));
+	//getAlbumTracks(authToken, $(this).attr('id'), $(this));
 	$(this).next('.tracklist').slideToggle();
 });
 
