@@ -98,6 +98,7 @@ input:focus {
 	box-shadow: 3px 3px 3px #333;
 	overflow: hidden;
 	position: relative;
+	transition: all 0.3s ease;
 }
 
 .album-cover {
@@ -118,19 +119,21 @@ input:focus {
 	transition: all 0.5s ease-out;
 }
 
-.show-tracks img {
+/*.show-tracks img {
 	height: 100%;
 }
 
 .show-tracks:hover {
 	background-color: #191919;
 	transition: all 0.5s ease;
-}
+}*/
 
-.album:hover .show-tracks {
-	width: 50px;
+.album:hover { /*.show-tracks {*/
+	box-shadow: 7px 7px 7px #333;
+	transition: all 0.3s ease;
+	/*width: 50px;
 	padding: 5px;
-	transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;*/
 }
 
 .tracklist {
